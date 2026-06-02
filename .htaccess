@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteRule (.*) public/$1 [L]
+</IfModule>
+
+# Bloquear acceso directo a archivos sensibles
+<FilesMatch "^\.env$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Bloquear acceso a directorios de backend
+<FilesMatch "\.(sql|log|bak|sh|bat)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Headers de seguridad HTTP
+<IfModule mod_headers.c>
+  # Prevenir Clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Prevenir MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  # Filtro XSS en navegadores antiguos
+  Header always set X-XSS-Protection "1; mode=block"
+  # Control de referrer
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

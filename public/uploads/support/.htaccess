@@ -1,0 +1,6 @@
+# Solo permitir imágenes
+<FilesMatch "(?i)\.(php|phtml|php3|php4|php5|php7|phar|shtml)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+Options -Indexes

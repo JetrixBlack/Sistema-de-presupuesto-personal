@@ -1,0 +1,39 @@
+# Entorno y Configuración Sensible
+.env
+.env.backup
+credenciales_*.txt
+
+# Directorios de dependencias
+vendor/
+node_modules/
+
+# Caché y Archivos Temporales
+storage/cache/*.cache
+storage/cache/*
+!storage/cache/.gitkeep
+*.log
+*.sqlite
+*.sqlite3
+
+# Backups de Base de Datos y Archivos Subidos
+storage/backups/*.sql
+storage/backups/*.gz
+storage/uploads/*
+!storage/uploads/.gitkeep
+
+# IDEs y SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Archivos compilados (si aplica)
+public/build/
+public/hot
+
+# Archivos comprimidos no deseados en el repo
+*.zip
+*.rar
+*.tar.gz
+scratch/
+

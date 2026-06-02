@@ -1,0 +1,416 @@
+/* ═══════════════════════════════════════════════════════════════
+   Sistema de Presupuesto Personal — Design System v2.1
+   Dark Glassmorphism Theme | Inter Font
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Fondo principal: Gradiente de Azul Marino a Morado Oscuro */
+    background: linear-gradient(135deg, #0b1121 0%, #170f30 100%);
+    background-attachment: fixed;
+    color: #f1f5f9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Global Forms & Inputs ────────────────────────────────────── */
+input[type="text"], input[type="password"], input[type="number"], select, textarea {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+    transition: all 0.3s ease;
+}
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: #a855f7 !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.15) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}
+input[readonly], input:disabled {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* ── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(168,85,247,0.4); }
+
+/* ── Glassmorphism ──────────────────────────────────────────── */
+.glass {
+    /* Fondo más oscuro que el body para que resalte hacia adentro */
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass-light {
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 1rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(168, 85, 247, 0.2);
+    background: rgba(168, 85, 247, 0.03);
+}
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+.sidebar-transition { transition: width 0.3s cubic-bezier(.4,0,.2,1); }
+/* Sidebar: Azul Marino más oscuro con sutil toque morado para contraste */
+#sidebar { 
+    background: linear-gradient(180deg, rgba(6, 9, 18, 0.98) 0%, rgba(13, 7, 28, 0.98) 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+/* ── Sidebar se oculta totalmente en móviles (se usa bottom nav) ── */
+@media (max-width: 767px) {
+    #sidebar { display: none !important; }
+}
+
+
+/* ── Sidebar collapsed solo aplica en desktop ──────────── */
+@media (min-width: 768px) {
+    #sidebar.collapsed { width: 5rem; }
+    #sidebar.collapsed .hide-collapsed { display: none; }
+    #sidebar.collapsed .center-collapsed {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+/* ── Nav Items ──────────────────────────────────────────────── */
+.nav-item {
+    position: relative;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: #a855f7;
+    border-radius: 0 2px 2px 0;
+    transition: height 0.2s ease;
+}
+
+.nav-item.active::before { height: 60%; }
+
+/* ── Inputs & Selects ───────────────────────────────────────── */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="date"],
+textarea {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f1f5f9;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0.75rem;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+}
+
+select {
+    appearance: none !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.9rem center !important;
+    background-size: 1em !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-right: 2.5rem !important;
+    color: #f1f5f9 !important;
+    transition: border-color 0.2s ease !important;
+    border-radius: 0.75rem !important;
+}
+
+select:focus {
+    outline: none !important;
+    border-color: #a855f7 !important;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a855f7'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+}
+
+select option {
+    background-color: #0f1221 !important;
+    color: #f1f5f9 !important;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn-primary {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover { opacity: 0.9; }
+.btn-primary:active { transform: scale(0.98); }
+
+/* El usuario pidió que los botones no estén en MAYÚSCULAS — se convierte a capitalize */
+/* Esto aplica a todos los botones que usaban la clase 'uppercase' de Tailwind */
+button.uppercase, a.uppercase, .uppercase[type="submit"], .uppercase[type="button"] {
+    text-transform: capitalize !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* ── Cajas de Color Mates (Tono Apagado, No Brillante) ────────── */
+/* Colores mates inspirados en el botón de cerrar sesión, sin brillo excesivo */
+
+.bg-purple-500\/10 { background-color: #5b3d8a !important; color: #e9d5ff !important; box-shadow: none; border-color: transparent !important; }
+.bg-emerald-500\/10 { background-color: #1e5c46 !important; color: #a7f3d0 !important; box-shadow: none; border-color: transparent !important; }
+.bg-red-500\/10 { background-color: #7f1d1d !important; color: #fca5a5 !important; box-shadow: none; border-color: transparent !important; }
+.bg-blue-500\/10 { background-color: #1e3a5f !important; color: #bfdbfe !important; box-shadow: none; border-color: transparent !important; }
+.bg-indigo-500\/10 { background-color: #312e81 !important; color: #c7d2fe !important; box-shadow: none; border-color: transparent !important; }
+.bg-yellow-500\/10 { background-color: #713f12 !important; color: #fde68a !important; box-shadow: none; border-color: transparent !important; }
+.bg-amber-500\/10 { background-color: #78350f !important; color: #fde68a !important; box-shadow: none; border-color: transparent !important; }
+
+/* Los íconos dentro heredan el color de texto */
+.bg-purple-500\/10 *, .bg-emerald-500\/10 *, .bg-red-500\/10 *,
+.bg-blue-500\/10 *, .bg-indigo-500\/10 *, .bg-yellow-500\/10 *, .bg-amber-500\/10 * { color: inherit !important; }
+
+/* ── Formularios colapsables (details) ───────────────────────── */
+/* Los paneles de formulario usaban bg-white/5 (claro) — los oscurecemos */
+details.glass {
+    background: rgba(0, 0, 0, 0.45) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+details.glass > summary {
+    user-select: none;
+}
+
+/* ── Paginación (botones Anterior / Siguiente) ───────────────── */
+/* Antes eran invisibles por usar text-gray-500 + bg-white/5 */
+#btnPrev, #btnNext {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #cbd5e1 !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem;
+    transition: background 0.15s, color 0.15s;
+    text-transform: capitalize !important;
+}
+#btnPrev:hover:not(:disabled), #btnNext:hover:not(:disabled) {
+    background: rgba(168, 85, 247, 0.2) !important;
+    border-color: rgba(168, 85, 247, 0.4) !important;
+    color: #e9d5ff !important;
+}
+#btnPrev:disabled, #btnNext:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+/* ── Tables ─────────────────────────────────────────────────── */
+table { border-collapse: separate; border-spacing: 0; }
+
+thead th {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b7280;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+tbody tr {
+    transition: background 0.15s ease;
+}
+
+tbody tr:hover {
+    background: rgba(168, 85, 247, 0.04);
+}
+
+tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.8125rem;
+    color: #cbd5e1;
+}
+
+/* ── Badge / Pills ──────────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.badge-success  { background: rgba(16,185,129,0.12); color: #34d399; }
+.badge-danger   { background: rgba(239,68,68,0.12);  color: #f87171; }
+.badge-warning  { background: rgba(245,158,11,0.12); color: #fbbf24; }
+.badge-purple   { background: rgba(168,85,247,0.12); color: #c084fc; }
+.badge-blue     { background: rgba(59,130,246,0.12); color: #60a5fa; }
+
+/* ── Stat Cards Gradient Borders ────────────────────────────── */
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::after { opacity: 1; }
+
+/* ── Tabs ───────────────────────────────────────────────────── */
+.tab-active {
+    color: #c084fc;
+    border-bottom-color: #a855f7;
+    font-weight: 700;
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 8px rgba(168,85,247,0.3); }
+    50%       { box-shadow: 0 0 20px rgba(168,85,247,0.6); }
+}
+
+.animate-fade-in { animation: fadeIn 0.35s ease both; }
+.animate-slide-in { animation: slideIn 0.3s ease both; }
+.glow-pulse { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ── Floating Toast Notifications ───────────────────────────── */
+#toast-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    pointer-events: none;
+}
+.toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: 0.875rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: toastIn 0.35s cubic-bezier(.21,1.02,.73,1) forwards;
+    min-width: 260px;
+    max-width: 380px;
+}
+.toast.toast-out { animation: toastOut 0.3s ease forwards; }
+.toast-success { background: rgba(21, 60, 44, 0.95); color: #a7f3d0; border-color: rgba(52,211,153,0.2); }
+.toast-error   { background: rgba(70, 20, 20, 0.95); color: #fca5a5; border-color: rgba(248,113,113,0.2); }
+.toast-warning { background: rgba(78, 48, 10, 0.95); color: #fde68a; border-color: rgba(251,191,36,0.2); }
+.toast-info    { background: rgba(20, 40, 70, 0.95); color: #bfdbfe; border-color: rgba(147,197,253,0.2); }
+@keyframes toastIn  { from { opacity:0; transform: translateX(30px) scale(0.92); } to { opacity:1; transform: translateX(0) scale(1); } }
+@keyframes toastOut { from { opacity:1; transform: translateX(0) scale(1); } to { opacity:0; transform: translateX(30px) scale(0.9); } }
+
+/* ── Modal Backdrop (menos oscuro) ─────────────────────────── */
+.modal-bg {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+}
+.modal-box {
+    background: rgba(15, 12, 30, 0.97);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.25rem;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+
+/* Modal overlay más suave: sobrescribe bg-black/80 dentro de modales */
+[id$="Modal"] { background: rgba(0, 0, 0, 0.55) !important; }
+
+/* Caja interior del modal aclarada —el .glass dentro de modales */
+[id$="Modal"] > .glass,
+[id$="Modal"] > div > .glass {
+    background: rgba(15, 14, 32, 0.96) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* ── Modal ──────────────────────────────────────────────────── */
+.modal-backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* ── Custom Scrollbar for tables ────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 10px; }
+
+/* ── Onboarding Tour ────────────────────────────────────────── */
+.tour-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9998; }
+.tour-step { position: absolute; z-index: 9999; }
+.tour-highlight {
+    position: relative;
+    z-index: 9999;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.6);
+    border-radius: 0.75rem;
+}
+
+/* ── Typography Refinements ─────────────────────────────────── */
+h1, h2, h3, h4 { letter-spacing: -0.02em; }
+.text-section-label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #4b5563;
+}
