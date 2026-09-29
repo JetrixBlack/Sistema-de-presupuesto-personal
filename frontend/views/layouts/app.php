@@ -140,6 +140,11 @@
 
             <!-- Profile Footer -->
             <div class="p-4 border-t border-white/5 center-collapsed">
+                <a href="<?php echo URL_ROOT; ?>/auth/eliminarDatos"
+                    class="flex items-center w-full px-4 py-2.5 rounded-xl text-red-400 hover:bg-red-600 hover:text-white transition-all center-collapsed group mb-2">
+                    <i class="fas fa-user-times w-5 text-center"></i>
+                    <span class="ml-3 text-sm font-black hide-collapsed uppercase tracking-widest">Eliminar mis datos</span>
+                </a>
                 <a href="<?php echo URL_ROOT; ?>/auth/logout"
                     class="flex items-center w-full px-4 py-2.5 rounded-xl bg-red-600 text-white hover:bg-red-700 transition-all center-collapsed group shadow-lg shadow-red-900/20">
                     <i class="fas fa-sign-out-alt w-5 text-center"></i>

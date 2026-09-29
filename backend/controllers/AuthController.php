@@ -132,4 +132,46 @@ class AuthController extends Controller
         Core\Auth::logout();
         $this->view('logged_out');
     }
+
+    public function eliminarDatos()
+    {
+        $user = Core\Auth::user();
+        if (!$user) {
+            $this->redirect(URL_ROOT . '/auth/login');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $current     = trim($_POST['current_password'] ?? '');
+            $answer      = strtolower(trim($_POST['answer'] ?? ''));
+            $passwordOk  = password_verify($current, $user->password ?? '');
+            $answerOk    = !empty($user->security_answer) && password_verify($answer, $user->security_answer);
+
+            if (!$passwordOk || !$answerOk) {
+                $data['error'] = 'Verificación falló: contraseña actual o respuesta de seguridad incorrectas.';
+            } else {
+                // Fase 1: borrado inmediato de datos identificativos del usuario
+                $this->userModel->update($user->id, [
+                    'username'        => 'usuario_eliminado_' . $user->id,
+                    'full_name'       => '[Usuario eliminado]',
+                    'security_question' => '',
+                    'security_answer' => '',
+                    'is_active'       => 0,
+                ]);
+                // Fase 2: retención legal 10 años (Código de Comercio art. 44/132)
+                // las transacciones/presupuestos se conservan anonimizados.
+                $retencionHasta = date('Y-m-d', strtotime('+10 years'));
+                Core\Auth::logout();
+                $data['comprobante'] = [
+                    'datos_eliminados' => 'Datos básicos eliminados de forma inmediata.',
+                    'retencion_legal'  => "Los registros financieros quedan anonimizados y se conservarán "
+                                       . "durante 10 años (hasta $retencionHasta) conforme al art. 44 y art. 132 "
+                                       . "del Código de Comercio, hasta la purga definitiva tras auditoría.",
+                ];
+                $this->view('eliminado', $data);
+                return;
+            }
+        }
+
+        $this->view('eliminar_datos', $data ?? []);
+    }
 }
