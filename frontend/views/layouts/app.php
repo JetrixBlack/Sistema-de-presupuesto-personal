@@ -276,6 +276,7 @@
                 </div>
                 <div class="flex items-center gap-3 text-[9px] font-semibold text-gray-600">
                     <span class="flex items-center gap-1"><i class="fas fa-shield-alt text-emerald-700"></i> SSL Activo</span>
+                    <a href="<?php echo URL_ROOT; ?>/PagesController/privacidad" class="hover:text-gray-400 transition-colors">Privacidad</a>
                     <span>v1.5.0</span>
                 </div>
         </main>

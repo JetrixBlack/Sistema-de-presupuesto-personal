@@ -13,4 +13,12 @@ class PagesController extends Controller {
 
         $this->view('pages', $data);
     }
+
+    public function privacidad() {
+        $data = [
+            'title' => 'Política de Privacidad'
+        ];
+
+        $this->view('privacidad', $data);
+    }
 }

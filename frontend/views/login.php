@@ -211,6 +211,9 @@ if (!function_exists('csrf_field')) {
         init();
         animate();
     </script>
+    <div style="position: fixed; bottom: 12px; left: 0; right: 0; text-align: center; z-index: 5;">
+        <a href="<?php echo URL_ROOT; ?>/PagesController/privacidad" class="text-[10px] font-bold text-gray-400 hover:text-gray-200 transition-colors" style="text-decoration: none;">Política de Privacidad</a>
+    </div>
 </body>
 
 </html>

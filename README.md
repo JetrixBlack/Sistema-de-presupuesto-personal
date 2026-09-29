@@ -2,6 +2,20 @@
 
 Bienvenido a la documentación técnica oficial del **Sistema de Presupuesto Personal** (anteriormente conocido como Sistema de Presupuesto Personal), una plataforma inteligente y robusta de gestión financiera personal y administrativa desarrollada bajo el patrón de diseño MVC en PHP nativo, con interfaces modernas y alta seguridad.
 
+> 🤖 **Este proyecto fue desarrollado con asistencia de inteligencia artificial** (OpenCode + Claude) en su diseño, implementación, testing y documentación, con supervisión y decisiones del humano a cargo.
+
+## Herramientas y servicios integrados
+
+| Herramienta | Uso |
+|-------------|-----|
+| **XAMPP (Apache + PHP)** | Servidor local y base de datos MySQL/MariaDB |
+| **PHP nativo (PDO)** | Lógica MVC, autenticación (bcrypt), sesiones seguras y prepared statements |
+| **Tailwind CSS (CDN)** | Interfaz Glassmorphic |
+| **Chart.js (CDN jsDelivr)** | Gráficos del dashboard y reportes |
+| **FPDF** | Exportación de PDFs de reportes |
+| **Google Fonts** (Inter, Poppins) | Tipografía |
+| **FontAwesome** | Iconografía |
+
 ## 🏗️ Arquitectura del Sistema
 El sistema emplea una arquitectura limpia **MVC (Modelo-Vista-Controlador)** que divide el proyecto de la siguiente forma:
 - **Modelos (`backend/models/`)**: Manejan la lógica de acceso a la base de datos (PDO) y procesan las operaciones matemáticas e informes financieros.
